@@ -51,13 +51,13 @@ export async function getAccessToken(code) {
         }
     });
 
-    const data = await res.data;
-    console.log(data);
+    const data = await res.data.access_token;
+
     return data.access_token;
 }
 
 export async function fetchProfile(token) {
-    const result = await axios.post("https://accounts.spotify.com/api/token", body, {
+    const result = await axios.get("https://api.spotify.com/v1/me", {
         headers: { Authorization: `Bearer ${token}` }
     });
 
